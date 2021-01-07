@@ -21,14 +21,14 @@ public class UserByRequestRepositoryImpl implements UsersByRequestRepository {
     @Override
     public List<UserDto> findByRequest(UserRequest userRequest) {
 
-        BooleanBuilder predicate = new BooleanBuilder();
-
+      BooleanBuilder predicate = new BooleanBuilder();
         if (userRequest.getAge() != null) {
+
             predicate.or(user.age.eq(userRequest.getAge()));
         }
 
         if (userRequest.getCity() != null) {
-            predicate.or(user.city.eq(userRequest.getAge()));
+            predicate.or(user.city.eq(userRequest.getCity()));
         }
 
         if (userRequest.getFirstName() != null) {
@@ -52,5 +52,6 @@ public class UserByRequestRepositoryImpl implements UsersByRequestRepository {
                 .lastName(row.getLastName())
                 .registrationDate(row.getRegistrationDate())
                 .build()).collect(Collectors.toList());
+
     }
 }
